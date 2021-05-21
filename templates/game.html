@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block content %}
+<i>Gess A number between 0 and 100</i><br />
+<input
+  type="text"
+  name="gessTxt"
+  id="gessTxt"
+  value="10"
+  placeholder="0"
+/><br />
+<button id="trybtn">Try</button
+><button id="endbtn" onclick="location='/'">OUT</button><br />
+
+<i id="message"><h1>test</h1></i>
+<script src="{{url_for('static', filename='js/script.js')}}"></script>
+
+{% endblock content %}

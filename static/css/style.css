@@ -1,0 +1,10 @@
+* {
+  margin: 6px;
+}
+body {
+  text-align: center;
+}
+.content {
+  display: inline-block;
+  border: 1px solid;
+}
