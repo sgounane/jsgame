@@ -1,27 +1,27 @@
-let message = document.querySelector("#message");
-let trybtn = document.querySelector("#trybtn");
-let gesstxt = document.querySelector("#gessTxt");
+let rollbtn = document.querySelector("#rollbtn");
+let newbtn = document.querySelector("#newbtn");
+let img = document.querySelector("#dice");
+let scorLabel = document.querySelector("#score");
+rollbtn.addEventListener("click", roll);
+newbtn.addEventListener("click", newgame);
+let score = 0;
 
-let nbr = Math.floor(Math.random() * 100);
-let scor = 20;
-console.log(nbr);
-trybtn.addEventListener("click", fnc);
-function fnc(e) {
-  let gess = parseInt(gesstxt.value);
-
-  if (scor == 0) {
-    message.innerHTML = `<h3>Game Over !!!<h3>`;
-    trybtn.removeEventListener("click", fnc);
-    return;
+function newgame(e) {
+  rollbtn.addEventListener("click", roll);
+  score = 0;
+  scorLabel.innerHTML = score;
+  img.src = `static/images/dice-0.png`;
+}
+function roll(e) {
+  let n = Math.floor(Math.random() * 5 + 1);
+  if (n != 1) {
+    score += n;
+    scorLabel.innerHTML = score;
+  } else {
+    score = 0;
+    rollbtn.removeEventListener("click", roll);
+    scorLabel.innerHTML = "GAME OVER!!";
   }
-  if (!isNaN(gess))
-    if (nbr == gess) message.innerHTML = `You win!!! scor:${scor}`;
-    else if (nbr > gess) {
-      scor -= 4;
-      message.innerHTML = `greater than this scor:${scor}`;
-    } else {
-      scor -= 4;
-      message.innerHTML = `less than this scor:${scor}`;
-    }
-  else message.innerHTML = `<H3>$Give me a number plz</H3>`;
+
+  img.src = `static/images/dice-${n}.png`;
 }

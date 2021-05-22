@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, request
 
 app=Flask(__name__)
 
@@ -9,5 +9,8 @@ def index():
 
 @app.route("/game", methods=["GET","POST"])
 def game():
-    return render_template("game.html")
+    if request.method=="POST":
+        name=request.form["name"]
+        return render_template("game.html",name=name)
+    return redirect("/")
 app.run(debug=True, port=5000)
